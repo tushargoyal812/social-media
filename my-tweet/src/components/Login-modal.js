@@ -47,10 +47,6 @@ export function InitialFocus({isOpen,onClose}) {
             </ModalBody>
   
             <ModalFooter>
-              {/* <Button colorScheme='blue' mr={3}>
-                Save
-              </Button>
-              <Button onClick={onClose}>Cancel</Button> */}
               <Flex>
               <Button onClick={loginHandler}>Login</Button>
               </Flex>

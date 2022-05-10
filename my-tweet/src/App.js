@@ -42,10 +42,6 @@ function App() {
         <Image h='48rem' w='55rem' src='https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/logos/htc-summary-card.jpg.twimg.768.jpg' alt='Dan Abramov' />
       </Box>
       <Box boxSize='25rem'>
-        {/* <div>
-          <Heading as='h1' size='4xl'>Happening now</Heading>
-          <Heading  as='h2' size='2xl'>Join Twitter today</Heading>
-        </div> */}
       <FormControl isRequired>
       <FormLabel htmlFor='first-name'>First name</FormLabel>
       <Input onChange={(e)=>setSignUpData({...signUpData,firstName:e.target.value})} mb='1.5rem' id='first-name' placeholder='First name' />
