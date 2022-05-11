@@ -32,7 +32,7 @@ export function InitialFocus({isOpen,onClose}) {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Login</ModalHeader>
+            <ModalHeader>Sign in to Twitter</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl>
