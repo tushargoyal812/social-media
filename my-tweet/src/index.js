@@ -5,6 +5,7 @@ import App from "./App";
 import { makeServer } from "./server";
 import {extendTheme,ChakraProvider} from '@chakra-ui/react'
 import {BrowserRouter} from 'react-router-dom'
+import { PostProvider } from "./context/post-context";
 // Call make Server
 makeServer();
 
@@ -21,11 +22,13 @@ const theme = extendTheme({ colors })
 
 ReactDOM.render(
   <React.StrictMode>
+    <PostProvider>
     <ChakraProvider theme={theme}>
       <BrowserRouter>
     <App />
     </BrowserRouter>
     </ChakraProvider>
+    </PostProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
