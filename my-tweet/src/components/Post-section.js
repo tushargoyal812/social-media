@@ -5,11 +5,12 @@ import { usePost } from "../context/post-context"
 import { CreatePost } from "./create-post"
 import { BiLike,BiMessageRounded } from "react-icons/bi";
 import { MdOutlineIosShare } from "react-icons/md";
+import { PostMenu } from "./post-menu"
+import { EditModal } from "./edit-modal"
 
 export const PostSection=()=>{
-    const { isOpen, onOpen, onClose } = useDisclosure()
     const {posts,setPosts}=usePost()
-
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const getPostsFromDb= async ()=>{
         try {
             const reponse=await axios.get('/api/posts')
@@ -18,7 +19,6 @@ export const PostSection=()=>{
             console.log(error);
         }
     }
-
     useEffect(()=>{
         getPostsFromDb()
     },[])
@@ -42,7 +42,10 @@ export const PostSection=()=>{
             <Box w='40rem' border='2px' borderColor='gray.200'>
                 {posts&&posts.map(post=>
                 <Box mx='2.5rem' my='3rem' key={post.id}>
+                    <Flex justify='space-between'>
                     <Heading size='md'>{post.username}</Heading>
+                    <PostMenu userPost={post} />
+                    </Flex>
                     <Box size='sm'>{post.content}</Box>
                     <Box my='1.5rem'>
                     <Flex justify='space-around'>

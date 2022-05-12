@@ -19,6 +19,7 @@ import {
   import { useState } from "react";
   import axios from 'axios'
   import { InitialFocus } from "../../src/components/Login-modal.js";
+import { Toast } from '../components/toast.js';
   
 export const SignUp=()=>{
     const [signUpData,setSignUpData]=useState({firstName:"",lastName:"",username:"",password:""})
@@ -55,6 +56,7 @@ export const SignUp=()=>{
       <InitialFocus isOpen={isOpen} onClose={onClose} />
       </FormControl>
       </Box>
+      {/* <Toast/> */}
       </Flex>
         </>
     )
