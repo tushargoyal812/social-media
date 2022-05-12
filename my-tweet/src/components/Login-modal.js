@@ -7,7 +7,9 @@ import { Button,Modal,
     ModalBody,
     ModalCloseButton,FormControl,FormLabel,Input,Flex } from "@chakra-ui/react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 export function InitialFocus({isOpen,onClose}) {
+  const navigate=useNavigate()
   
     const initialRef =useRef()
     const finalRef =useRef()
@@ -17,6 +19,7 @@ export function InitialFocus({isOpen,onClose}) {
         try {
             const response=await axios.post('/api/auth/login',login)
             localStorage.setItem("user",response.data.encodedToken)
+            navigate('/')
         } catch (error) {
             console.log(error);
         }

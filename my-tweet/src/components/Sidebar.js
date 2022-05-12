@@ -3,11 +3,14 @@ import {
     ListItem,
     ListIcon,
     Button,
-    Icon
+    Icon,
+    useDisclosure
   } from '@chakra-ui/react'
   import {MdHome,MdExplore,MdBookmark,MdNotifications,MdMessage,MdListAlt,MdMore} from 'react-icons/md'
   import { FaUser } from "react-icons/fa";
+import { CreatePost } from './create-post';
 export const Sidebar=()=>{
+    const {onOpen,isOpen,onClose}=useDisclosure()
     return(
         <>
 <List fontSize='1.5rem' pr='5rem' spacing={5}>
@@ -43,8 +46,9 @@ export const Sidebar=()=>{
   <Icon mx='1rem' as={MdMore} />
     More
   </ListItem>
-  <Button px='2.5rem' colorScheme='blue'>Tweet</Button>
+  <Button onClick={onOpen} px='2.5rem' colorScheme='blue'>Tweet</Button>
 </List>
+<CreatePost isOpen={isOpen} onClose={onClose} />
         </>
     )
 }
