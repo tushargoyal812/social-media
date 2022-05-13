@@ -4,12 +4,15 @@ import { useEffect, useState } from "react"
 import { usePost } from "../context/post-context"
 import { CreatePost } from "./create-post"
 import { BiLike,BiMessageRounded } from "react-icons/bi";
-import { MdOutlineIosShare } from "react-icons/md";
+import { MdOutlineThumbUp,MdThumbUp } from "react-icons/md";
 import { PostMenu } from "./post-menu"
 import { EditModal } from "./edit-modal"
+import { AddBookmark } from "./add-bookmark"
+import { likeHandler } from "../util-functions/likeHandler"
+import { dislikeHandler } from "../util-functions/dislike-handler"
 
 export const PostSection=()=>{
-    const {posts,setPosts}=usePost()
+    const {posts,setPosts,liked,setLiked}=usePost()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const getPostsFromDb= async ()=>{
         try {
@@ -49,9 +52,10 @@ export const PostSection=()=>{
                     <Box size='sm'>{post.content}</Box>
                     <Box my='1.5rem'>
                     <Flex justify='space-around'>
-                    <Icon h='2rem' w='2rem' as={BiLike}/>
+                    <Box>{post.likes.likeCount}</Box>
+                    {post.likes.likeCount===0?<Icon onClick={()=>likeHandler(post._id,setPosts)} h='2rem' w='2rem' as={MdOutlineThumbUp}/>:<Icon onClick={()=>dislikeHandler(post._id,setPosts)} h='2rem' w='2rem' as={MdThumbUp} />}
                     <Icon h='2rem' w='2rem' as={BiMessageRounded}/>
-                    <Icon h='2rem' w='2rem' as={MdOutlineIosShare}/>
+                    <AddBookmark userPost={post}/>
                     </Flex>
                     </Box>
                 </Box>)}
