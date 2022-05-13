@@ -9,23 +9,24 @@ import {
   import {MdHome,MdExplore,MdBookmark,MdNotifications,MdMessage,MdListAlt,MdMore} from 'react-icons/md'
   import { FaUser } from "react-icons/fa";
 import { CreatePost } from './create-post';
+import { Link } from 'react-router-dom';
 export const Sidebar=()=>{
     const {onOpen,isOpen,onClose}=useDisclosure()
     return(
         <>
 <List fontSize='1.5rem' pr='5rem' spacing={5}>
-  <ListItem>
+  <Link to='/'>
       <Icon mx='1rem' as={MdHome} />
     Home
-  </ListItem>
+  </Link>
   <ListItem>
   <Icon mx='1rem' as={MdExplore} />
     Explore
   </ListItem>
-  <ListItem>
+  <Link to='/bookmarks'>
   <Icon mx='1rem' as={MdBookmark} />
     Bookmarks
-  </ListItem>
+  </Link>
   <ListItem>
   <Icon mx='1rem' as={MdNotifications} />
     Notification
