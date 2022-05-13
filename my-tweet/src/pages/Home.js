@@ -1,6 +1,7 @@
 import { Flex, Wrap } from "@chakra-ui/react"
 import { Navbar } from "../components/navbar"
 import { PostSection } from "../components/Post-section"
+import { RightSidebar } from "../components/right-sidebar"
 import { Sidebar } from "../components/Sidebar"
 
 export const Home=()=>{
@@ -11,7 +12,7 @@ export const Home=()=>{
         <Flex>
         <Sidebar/>
         <PostSection/>
-        {/* <Sidebar/> */}
+        <RightSidebar/>
         </Flex>
         </Wrap>
         </>

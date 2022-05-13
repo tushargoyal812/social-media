@@ -8,8 +8,10 @@ const PostProvider=({children})=>{
     const [newPostData,setNewPostData]=useState()
     const [login,setLogin]=useState({username:"",password:""})
     const [userBookmarks,setUserBookmarks]=useState([])
-    const [liked,setLiked]=useState()
-    return(<PostContext.Provider value={{posts,setPosts,newPostData,setNewPostData,login,setLogin,userBookmarks,setUserBookmarks,liked,setLiked}}>{children}</PostContext.Provider>)
+    const [allUsers,setAllUsers]=useState()
+    const [userFollow,setUserFollow]=useState()
+    const [userUnfollow,setUserUnfollow]=useState({})
+    return(<PostContext.Provider value={{posts,setPosts,newPostData,setNewPostData,login,setLogin,userBookmarks,setUserBookmarks,allUsers,setAllUsers,userFollow,setUserFollow,userUnfollow,setUserUnfollow}}>{children}</PostContext.Provider>)
 }
 
 const usePost=()=>useContext(PostContext)
