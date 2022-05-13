@@ -15,7 +15,7 @@ import axios from 'axios';
 import { usePost } from '../context/post-context';
 import { EditModal } from './edit-modal';
 export const PostMenu=({userPost})=>{
-    const{setPosts,posts}=usePost()
+    const{setPosts}=usePost()
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const deletePostHandler=async(id)=>{
