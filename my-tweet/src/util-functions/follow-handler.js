@@ -8,7 +8,8 @@ export const followHandler=async(id,setUserFollow)=>{
                 authorization: token,
               },
            })
-           setUserFollow(response.data.user.following)
+           setUserFollow(response.data.user)
+           console.log(response.data.user);
     } catch (error) {
         console.log(error);
     }
