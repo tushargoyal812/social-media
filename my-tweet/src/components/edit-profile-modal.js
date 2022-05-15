@@ -30,7 +30,6 @@ export const EditProfileModal=({isOpen,onClose})=>{
                   authorization:token
                 }
               })
-              console.log(response,"response");
               setLoggedInUser(response.data.user)
         } catch (error) {
             console.log(error);

@@ -11,7 +11,6 @@ export const UserProfileComponent=()=>{
     const getUserData=()=>{
         const userData=JSON.parse(localStorage.getItem("userName"))
         setLoggedInUser(userData)
-        console.log(userData,"userData");
     }
 
     useEffect(()=>{
