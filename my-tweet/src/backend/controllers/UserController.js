@@ -44,17 +44,17 @@ export const getUserHandler = function (schema, request) {
 export const editUserHandler = function (schema, request) {
   let user = requiresAuth.call(this, request);
   try {
-    if (!user) {
-      return new Response(
-        404,
-        {},
-        {
-          errors: [
-            "The username you entered is not Registered. Not Found error",
-          ],
-        }
-      );
-    }
+    // if (!user) {
+    //   return new Response(
+    //     404,
+    //     {},
+    //     {
+    //       errors: [
+    //         "The username you entered is not Registered. Not Found error",
+    //       ],
+    //     }
+    //   );
+    // }
     const { userData } = JSON.parse(request.requestBody);
     user = { ...user, ...userData, updatedAt: formatDate() };
     this.db.users.update({ _id: user._id }, user);

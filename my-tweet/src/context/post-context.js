@@ -11,7 +11,9 @@ const PostProvider=({children})=>{
     const [allUsers,setAllUsers]=useState()
     const [userFollow,setUserFollow]=useState()
     const [userUnfollow,setUserUnfollow]=useState({})
-    return(<PostContext.Provider value={{posts,setPosts,newPostData,setNewPostData,login,setLogin,userBookmarks,setUserBookmarks,allUsers,setAllUsers,userFollow,setUserFollow,userUnfollow,setUserUnfollow}}>{children}</PostContext.Provider>)
+    const [loggedInUser,setLoggedInUser]=useState()
+    const [editUserData,setEditUserData]=useState({firstName:"",lastName:"",username:"",bio:"",portfolioURL:""})
+    return(<PostContext.Provider value={{posts,setPosts,newPostData,setNewPostData,login,setLogin,userBookmarks,setUserBookmarks,allUsers,setAllUsers,userFollow,setUserFollow,userUnfollow,setUserUnfollow,loggedInUser,setLoggedInUser,editUserData,setEditUserData}}>{children}</PostContext.Provider>)
 }
 
 const usePost=()=>useContext(PostContext)

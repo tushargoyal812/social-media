@@ -31,7 +31,7 @@ export const RightSidebar=()=>{
             <Box size='sm'>{dbUsers.username}</Box>
             </Box>
             <Box>
-            {userFollow&&userFollow.some(item=>item._id===dbUsers._id)?<Button onClick={()=>unfollowHandler(dbUsers._id,setUserFollow)} size='xs' colorScheme='teal' variant='outline'>Following</Button>:<Button onClick={()=>followHandler(dbUsers._id,setUserFollow)} colorScheme='blue' size='xs'>Follow</Button>}
+            {userFollow&&userFollow.following.some(item=>item._id===dbUsers._id)?<Button onClick={()=>unfollowHandler(dbUsers._id,setUserFollow)} size='xs' colorScheme='teal' variant='outline'>Following</Button>:<Button onClick={()=>followHandler(dbUsers._id,setUserFollow)} colorScheme='blue' size='xs'>Follow</Button>}
             <UnfollowModal isOpen={isOpen} onClose={onClose} />
             </Box>
             </Flex>

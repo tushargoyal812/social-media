@@ -39,10 +39,10 @@ export const Sidebar=()=>{
   <Icon mx='1rem' as={MdListAlt} />
     Lists
   </ListItem>
-  <ListItem>
+  <Link to='/profile'>
   <Icon mx='1rem' as={FaUser} />
     Profile
-  </ListItem>
+  </Link>
   <ListItem>
   <Icon mx='1rem' as={MdMore} />
     More
