@@ -18,7 +18,6 @@ import { useToast } from '@chakra-ui/react';
 export const AddBookmark=({userPost})=>{
     const {userBookmarks,setUserBookmarks}=usePost()
     const toast=useToast()
-
     const bookmarkPostHandler=async(id)=>{
         const token=localStorage.getItem('user')
             try {
