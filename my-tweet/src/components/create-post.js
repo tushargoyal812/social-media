@@ -24,6 +24,7 @@ export const CreatePost=({isOpen,onClose,onOpen})=> {
                   authorization: token,
                 },
               })
+              console.log(response);
               setPosts(response.data.posts)
         } catch (error) {
             console.log(error);
