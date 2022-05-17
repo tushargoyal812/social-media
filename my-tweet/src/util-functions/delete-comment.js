@@ -9,7 +9,6 @@ export const deleteCommentHandler=async(postId,commentId,setPosts)=>{
               authorization:token
             }
           })
-          console.log(response.data.posts.comments);
           setPosts(response.data.posts)
     } catch (error) {
         console.log(error);

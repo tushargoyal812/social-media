@@ -20,10 +20,6 @@ export const EditComment=({onOpen,isOpen,onClose})=>{
     const {commentDetail,setCommentDetail,userPostId,userCommentId,setPosts}=usePost()
     return(
         <>
-      {/* <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-        I'll receive focus on close
-      </Button> */}
 
       <Modal
         initialFocusRef={initialRef}
