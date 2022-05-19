@@ -104,7 +104,9 @@ export const PostSection=()=>{
                     </Box>
                     <Box w='35rem' py='1rem' h='10rem' border='1px'>
                         {post.comments.map(data=><Box key={data._id}>
-                        <Flex>
+                            <Flex justify='space-between'>
+                            <Box>
+                        <Flex>        
                         <Box px='0.5rem'>
                         <Avatar name='Tushar Goyal' src='https://pbs.twimg.com/profile_images/1418454146693222406/ARD6Bp1J_400x400.jpg' />
                         </Box>
@@ -120,7 +122,9 @@ export const PostSection=()=>{
                         {data.votes.downvotedBy.map(upvoteItem=><Box key={upvoteItem._id}>
                             <Heading size='sm'> down voted By {upvoteItem.username}</Heading>
                             </Box>)}
-                        </Flex>
+                            </Flex>
+                            </Box>
+                            <Box>
                         <Menu>
                         <>
                         <MenuButton>
@@ -141,6 +145,8 @@ export const PostSection=()=>{
                         </>
                         {openEditComment&&<EditComment isOpen={isOpen} onClose={onClose} />}
                         </Menu>
+                        </Box>
+                        </Flex>
                         </Box>)}
                     </Box>
                 </Box>)}
