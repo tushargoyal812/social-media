@@ -7,6 +7,7 @@ import { RightSidebar } from "../components/right-sidebar"
 import { PostSection } from "../components/Post-section"
 import { postHandler } from "../redux/redux-src/features/post/postSlice"
 import { useSelector,useDispatch } from "react-redux"
+import axios from "axios"
 
 export const Explore=()=>{
     const dispatch=useDispatch()
