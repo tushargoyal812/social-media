@@ -13,14 +13,16 @@ import {
     Input
   } from '@chakra-ui/react'
 import axios from "axios"
-import { usePost } from "../context/post-context"
+import { editUserDataHandler } from "../redux/redux-src/features/post/postSlice"
+import { useSelector,useDispatch } from "react-redux"
+import { loggedInUserHandler } from "../redux/redux-src/features/post/postSlice"
 export const EditProfileModal=({isOpen,onClose})=>{
     const initialRef = useRef()
     const finalRef = useRef()
-    const {editUserData,setEditUserData,loggedInUser,setLoggedInUser}=usePost()
+    const dispatch=useDispatch()
+    const {editUserData}=useSelector(store=>store.posts)
 
     const editUser=async()=>{
-        console.log(editUserData,"edit user");
         const token=localStorage.getItem("user")
         try {
             const response=await axios.post(`/api/users/edit`,{
@@ -30,12 +32,17 @@ export const EditProfileModal=({isOpen,onClose})=>{
                   authorization:token
                 }
               })
-              console.log(response,"response");
-              setLoggedInUser(response.data.user)
+              dispatch(loggedInUserHandler(response.data.user))
         } catch (error) {
             console.log(error);
         }
     }
+
+    const onChangeHandler=(e)=>{
+      const {name,value}=e.target
+      dispatch(editUserDataHandler({...editUserData,[name]:value}))
+    }
+
     return(
         <>
       <Modal
@@ -51,27 +58,27 @@ export const EditProfileModal=({isOpen,onClose})=>{
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>First name</FormLabel>
-              <Input value={editUserData.firstName} onChange={(e)=>{setEditUserData({...editUserData,firstName:e.target.value})}} ref={initialRef} placeholder='First name' />
+              <Input name="firstName" defaultValue={editUserData.firstName} onChange={(e)=>onChangeHandler(e)} placeholder='First name' />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Last name</FormLabel>
-              <Input value={editUserData.lastName} onChange={(e)=>{setEditUserData({...editUserData,lastName:e.target.value})}} placeholder='Last name' />
+              <Input name="lastName" defaultValue={editUserData.lastName} onChange={(e)=>onChangeHandler(e)} placeholder='Last name' />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Username</FormLabel>
-              <Input value={editUserData.username} onChange={(e)=>{setEditUserData({...editUserData,username:e.target.value})}} placeholder='Username' />
+              <Input name="username" defaultValue={editUserData.username} onChange={(e)=>onChangeHandler(e)} placeholder='Username' />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Bio</FormLabel>
-              <Input value={editUserData.bio} onChange={(e)=>{setEditUserData({...editUserData,bio:e.target.value})}} placeholder='Bio' />
+              <Input name="bio" defaultValue={editUserData.bio} onChange={(e)=>onChangeHandler(e)} placeholder='Bio' />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Portfolio URL</FormLabel>
-              <Input value={editUserData.portfolioURL} onChange={(e)=>{setEditUserData({...editUserData,portfolioURL:e.target.value})}} placeholder='Portfolio URL' />
+              <Input name="portfolioURL" defaultValue={editUserData.portfolioURL} onChange={(e)=>onChangeHandler(e)} placeholder='Portfolio URL' />
             </FormControl>
           </ModalBody>
           <ModalFooter>

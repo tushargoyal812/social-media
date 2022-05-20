@@ -1,6 +1,7 @@
 import axios from "axios";
+import { postHandler } from "../redux/redux-src/features/post/postSlice";
 
-export const downVoteHandler=async(upVotePostId,upVoteCommentId,setPosts)=>{
+export const downVoteHandler=async(upVotePostId,upVoteCommentId,dispatch)=>{
     const token=localStorage.getItem('user')
     try {
         const response=await axios.post(`/api/comments/downvote/${upVotePostId}/${upVoteCommentId}`,{},
@@ -9,7 +10,7 @@ export const downVoteHandler=async(upVotePostId,upVoteCommentId,setPosts)=>{
               authorization:token
             }
           })
-          setPosts(response.data.posts);
+          dispatch(postHandler(response.data.posts));
     } catch (error) {
         console.log(error);
     }

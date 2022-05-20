@@ -6,14 +6,11 @@ import { Button,Modal,
     ModalFooter,
     ModalBody,
     ModalCloseButton,FormControl,FormLabel,Input,Flex } from "@chakra-ui/react"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { Toast } from "./toast"
-import { usePost } from "../context/post-context"
 import { loginHandler } from "../util-functions/login-handler"
 import { useToast } from "@chakra-ui/react"
 export function InitialFocus({isOpen,onClose}) {
-  const {login,setLogin,loggedInUser,setLoggedInUser}=usePost()
+  const [login,setLogin]=useState({username:"",password:""})
   const navigate=useNavigate()
   const toast=useToast()
     const initialRef =useRef()
@@ -46,7 +43,7 @@ export function InitialFocus({isOpen,onClose}) {
   
             <ModalFooter>
               <Flex>
-              <Button onClick={()=>loginHandler(navigate,login,toast,setLoggedInUser)} colorScheme='blue'>Login</Button>
+              <Button onClick={()=>loginHandler(navigate,login,toast)} colorScheme='blue'>Login</Button>
               </Flex>
             </ModalFooter>
           </ModalContent>

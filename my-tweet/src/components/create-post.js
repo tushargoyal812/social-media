@@ -1,4 +1,4 @@
-import {useRef} from "react"
+import {useRef,useState} from "react"
 import { Button,Modal,
     ModalOverlay,
     ModalContent,
@@ -7,12 +7,13 @@ import { Button,Modal,
     ModalBody,
     ModalCloseButton,FormControl,FormLabel,Input,Flex } from "@chakra-ui/react"
 import axios from "axios"
-import { usePost } from "../context/post-context"
+import { useDispatch,useSelector } from "react-redux"
+import { newPostHandler,postHandler } from "../redux/redux-src/features/post/postSlice"
 export const CreatePost=({isOpen,onClose,onOpen})=> {
     const initialRef = useRef()
     const finalRef = useRef()
-    const {setPosts,newPostData,setNewPostData}=usePost()
-
+    const dispatch=useDispatch()
+    const {newPostData}=useSelector(store=>store.posts)
 
     const addPost= async ()=>{
         const token=localStorage.getItem("user")
@@ -25,7 +26,7 @@ export const CreatePost=({isOpen,onClose,onOpen})=> {
                 },
               })
               console.log(response);
-              setPosts(response.data.posts)
+              dispatch(postHandler(response.data.posts))
         } catch (error) {
             console.log(error);
         }
@@ -45,7 +46,7 @@ export const CreatePost=({isOpen,onClose,onOpen})=> {
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl>
-                <Input onChange={(e)=>setNewPostData(e.target.value)} ref={initialRef} placeholder='Whats happening?' />
+                <Input onChange={(e)=>dispatch(newPostHandler(e.target.value))} ref={initialRef} placeholder='Whats happening?' />
               </FormControl>
             </ModalBody>
             <ModalFooter>

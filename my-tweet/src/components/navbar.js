@@ -1,5 +1,4 @@
 import { Box, Flex, Heading,Button, useToast } from "@chakra-ui/react"
-import { useEffect } from "react"
 import {useNavigate,Link} from 'react-router-dom'
 import { logoutHandler } from "../util-functions/logout-handler"
 

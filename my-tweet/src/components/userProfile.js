@@ -1,17 +1,20 @@
 import { Box,Avatar, Heading, Flex, Link,Button,useDisclosure, Wrap } from "@chakra-ui/react"
-import { useEffect,useRef } from "react"
-import { usePost } from "../context/post-context"
+import { useEffect } from "react"
 import {NavLink} from 'react-router-dom'
 import { EditProfileModal } from "./edit-profile-modal"
+import { useSelector,useDispatch } from "react-redux"
+import { loggedInUserHandler } from "../redux/redux-src/features/post/postSlice"
 
 export const UserProfileComponent=()=>{
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const {loggedInUser,setLoggedInUser,userFollow}=usePost()
+    const dispatch=useDispatch()
+    const {loggedInUser}=useSelector(store=>store.posts)
+    const {userFollow}=useSelector(store=>store.posts)
+
 
     const getUserData=()=>{
         const userData=JSON.parse(localStorage.getItem("userName"))
-        setLoggedInUser(userData)
-        console.log(userData,"userData");
+        dispatch(loggedInUserHandler(userData))
     }
 
     useEffect(()=>{

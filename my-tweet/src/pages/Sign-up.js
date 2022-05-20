@@ -19,14 +19,12 @@ import {
   import { useState } from "react";
   import axios from 'axios'
   import { InitialFocus } from "../../src/components/Login-modal.js";
-import { Toast } from '../components/toast.js';
   
 export const SignUp=()=>{
     const [signUpData,setSignUpData]=useState({firstName:"",lastName:"",username:"",password:""})
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const signupHandler= async ()=>{
-    console.log(signUpData)
     try {
       const response=await axios.post('/api/auth/signup',signUpData)
       localStorage.setItem("token",response.data.encodedToken)

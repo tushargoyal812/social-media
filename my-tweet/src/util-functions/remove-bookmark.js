@@ -1,6 +1,7 @@
 import axios from "axios";
+import { bookmarkHandler } from "../redux/redux-src/features/post/postSlice";
 
-export const RemoveBookmarkPostHandler=async(id,setUserBookmarks,toast)=>{
+export const RemoveBookmarkPostHandler=async(id,dispatch,toast)=>{
     const token=localStorage.getItem("user")
     try {
         const response=await axios.post(`/api/users/remove-bookmark/${id}`,{},{
@@ -8,7 +9,7 @@ export const RemoveBookmarkPostHandler=async(id,setUserBookmarks,toast)=>{
                 authorization: token,
               },
            })
-           setUserBookmarks(response.data.bookmarks);
+           dispatch(bookmarkHandler(response.data.bookmarks));
            toast({
             title: "Removed from Bookmark",
             status: 'success',

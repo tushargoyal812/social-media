@@ -1,6 +1,7 @@
 import axios from "axios";
+import { postHandler } from "../redux/redux-src/features/post/postSlice";
 
-export const editCommentHandler=async(commentDetail,editPostId,editCommentId,setPosts)=>{
+export const editCommentHandler=async(commentDetail,editPostId,editCommentId,dispatch)=>{
     const token=localStorage.getItem('user')
     console.log(commentDetail,editPostId,editCommentId);
     try {
@@ -12,8 +13,7 @@ export const editCommentHandler=async(commentDetail,editPostId,editCommentId,set
               authorization:token
             }
           })
-          console.log(response);
-          setPosts(response.data.posts)
+          dispatch(postHandler(response.data.posts))
     } catch (error) {
         console.log(error);
     }

@@ -12,12 +12,14 @@ import {
   } from '@chakra-ui/react'
 import axios from 'axios';
   import { MdBookmark } from "react-icons/md";
-import { usePost } from '../context/post-context';
 import { RemoveBookmarkPostHandler } from '../util-functions/remove-bookmark';
 import { useToast } from '@chakra-ui/react';
+import { bookmarkHandler } from '../redux/redux-src/features/post/postSlice';
+import { useSelector,useDispatch } from 'react-redux';
 export const AddBookmark=({userPost})=>{
-    const {userBookmarks,setUserBookmarks}=usePost()
     const toast=useToast()
+    const dispatch=useDispatch()
+    const {userBookmarks}=useSelector(store=>store.posts)
     const bookmarkPostHandler=async(id)=>{
         const token=localStorage.getItem('user')
             try {
@@ -26,7 +28,7 @@ export const AddBookmark=({userPost})=>{
                      authorization: token,
                    },
                 })
-                setUserBookmarks(response.data.bookmarks)
+               dispatch(bookmarkHandler(response.data.bookmarks))
                 toast({
                     title: "Added to Bookmark",
                     status: 'success',
@@ -45,7 +47,7 @@ export const AddBookmark=({userPost})=>{
           <Icon w='1.5rem' h='1.5rem' as={Button} as={MdBookmark} />
       </MenuButton>
       <MenuList>
-          {userBookmarks.some(item=>item._id===userPost._id)?<MenuItem onClick={()=>RemoveBookmarkPostHandler(userPost._id,setUserBookmarks,toast)}>Remove from Bookmark</MenuItem>:<MenuItem onClick={()=>bookmarkPostHandler(userPost._id)}>Bookmark</MenuItem>} 
+          {userBookmarks.some(item=>item._id===userPost._id)?<MenuItem onClick={()=>RemoveBookmarkPostHandler(userPost._id,dispatch,toast)}>Remove from Bookmark</MenuItem>:<MenuItem onClick={()=>bookmarkPostHandler(userPost._id)}>Bookmark</MenuItem>} 
       </MenuList>
     </>
 </Menu>
