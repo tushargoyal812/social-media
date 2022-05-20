@@ -1,93 +1,70 @@
-# Social Media | Talkmedia
+# Getting Started with Create React App
 
-## [Live link](https://talkmedia.vercel.app/)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Talkmedia is an fully functional and Responsive social media app which provides the different pages like Home Page,Explore page, Bookmark page , profile page, Login/Signup page.
-![Screenshot (170)](https://user-images.githubusercontent.com/88363801/169531197-7d885bcc-960f-48c2-80dd-63cc00ff9331.png)
+## Available Scripts
 
-## Whats's included?
-- Home Page
-- Explore page
-- Bookmark page
-- Profile page
-- Login page
-- Signup page
+In the project directory, you can run:
 
+### `yarn start`
 
-## Summary:-
-Users can see a home page with all the posts where user can create new post. user can edit the post and user can delete the post. In the post user can like/dislike post, user can add post to boookmark,user can remove post from bookmark, user can comment on post ,user can edit their comment, user can delete their comment, user can upvote on particular comment, user can downvote on particular comment.I can see a explore page where we can see all the post even of the people whom I don't follow.
-I can see a bookmark tab where i can bookmark all the post.I can see a profile page where user can see their profile and edit their profile.In the right side we can see user where we can click any profile and see the information about user.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Whats's Features/Functionalities included?
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-- Authentication
-  - Users can sign-up for your app
-  - Users can log in to your app
-  - Users can logout from your app
+### `yarn test`
 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Home page
-I can see a landing page with a list of user posts.
+### `yarn build`
 
-## Create a Post
-In the sidebar I can see a create post button. 
-- I can create a post with a create post button or "Create post" button which will open a textbox and will have a "Post" button.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Edit & Delete Post
-When we click on three dot menu button we can see two menu item one is "edit post" and second is "delete post"
-- Edit Post
-I can click on the "Edit Post" button which will open the same component with the textbox where we can edit a post & save it.
-- Delete Post
-I can click on the "Delete Post" button which will delete a post.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Like/dislike:
-- I can like a post and if we again click on same button then we can dislike the same post.
-## Comment/Replies
-- I can see a comment icon, once clicked it open the modal where we can put our comment.
-- once added a comment we can see three dot button in the menu item 
-- Edit comment
-I can click on the "Edit comment" button which will open the same component with the textbox where we can edit a comment & save it.
-- Delete comment
-I can click on the "Delete comment" button which will delete a comment.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- Upvote icon
- I can click on "upvote" icon which will show the username who have upvoted a particular comment.
-- Downvote icon
-I can click on "downvote" icon which will show the username who have downvoted a particular comment.
+### `yarn eject`
 
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## Sort & Filter by Date, Trending
-- Filter by Trending
-I can filter posts by clicking on the "Trending" button which will show all the posts with the most likes.
-- Sort by Date
-I can sort the posts by the date and time added/created.
-## User Profile
-- Add Profile Picture
-I can add a profile picture to the user profile by clicking on the edit profile, I can see an choose file where we can upload a profile.
-- First name
-I can add a first name of user by clicking on the edit profile option and where I can see a textbox to add texts and save it by clicking on the save button.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-- last name
-I can add a last name of user by clicking on the edit profile option and where I can see a textbox to add texts and save it by clicking on the save button.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- Username
-I can add username of the user by clicking on the edit profile option and where I can see a textbox to add texts and save it by clicking on the save button.
-- Bio
-I can add a bio of the user by clicking on the edit profile option and where I can see a textbox to add texts and save it by clicking on the save button.
-- Portfolio URL
-I can add a portfolio url of the user by clicking on the edit profile option and where I can see a textbox to add the URL of the profile and save it by clicking on the save button.
-## Follow/Unfollow
-- When I click the user profile in right sidebar, I can see a "Follow" button, if I click on it, I can follow the user.
-If clicked again on the same button, I will "unfollow" the same user.
-## Explore Feed
-- When I click on Explore feed I can see all the post even of the people whom I don't follow.
-## Bookmark Post
-- For every post on the home page, I can see a "Bookmark" option where I can bookmark a post which will add it to the bookmark list.If i again click on same button which will remove post from bookmark.
-## Sign-up Page
-- I can see a sign-up page from where I can sign-up using my email, first name, last name, password & confirm password.
-- I can see a hide-show icon button that shows or hides my password.
-## Login Page
-- I can see a login page from where I can log in using my email & password.
-- I can see a hide-show icon button that shows or hides my password.
-## Logout
-- I can see a logout button from where I can log out from the app on the header navbar.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
