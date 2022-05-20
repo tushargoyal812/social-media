@@ -14,10 +14,15 @@ import {
   import {useRef} from 'react'
 import { usePost } from '../context/post-context'
 import { editCommentHandler } from '../util-functions/edit-comment-handler'
+import { useSelector,useDispatch } from 'react-redux'
+import { commentDetailHandler } from '../redux/redux-src/features/post/postSlice'
 export const EditComment=({onOpen,isOpen,onClose})=>{
     const initialRef = useRef()
     const finalRef = useRef()
-    const {commentDetail,setCommentDetail,userPostId,userCommentId,setPosts}=usePost()
+    const dispatch=useDispatch()
+    const {commentDetail}=useSelector(store=>store.posts)
+    const {userPostId}=useSelector(store=>store.posts)
+    const {userCommentId}=useSelector(store=>store.posts)
     return(
         <>
 
@@ -33,12 +38,12 @@ export const EditComment=({onOpen,isOpen,onClose})=>{
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <Input value={commentDetail} onChange={(e)=>setCommentDetail(e.target.value)} ref={initialRef} placeholder='Edit Comment' />
+              <Input value={commentDetail} onChange={(e)=>dispatch(commentDetailHandler(e.target.value))} ref={initialRef} placeholder='Edit Comment' />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={()=>editCommentHandler(commentDetail,userPostId,userCommentId,setPosts)} colorScheme='blue' mr={3}>
+            <Button onClick={()=>editCommentHandler(commentDetail,userPostId,userCommentId,dispatch)} colorScheme='blue' mr={3}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>

@@ -1,19 +1,22 @@
 import { Box, Button, Flex, Heading, useDisclosure, Wrap } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect } from "react"
-import { usePost } from "../context/post-context"
 import { followHandler } from "../util-functions/follow-handler"
 import { unfollowHandler } from "../util-functions/unfollow-handler"
 import { UnfollowModal } from "./unfollow-modal"
+import { allUsersHandler } from "../redux/redux-src/features/post/postSlice"
+import { useSelector,useDispatch } from "react-redux"
 
 export const RightSidebar=()=>{
-    const {allUsers,setAllUsers,userFollow,setUserFollow,userUnfollow,setUserUnfollow}=usePost()
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const dispatch=useDispatch()
+    const {allUsers}=useSelector(store=>store.allUsers)
+    const {userFollow}=useSelector(store=>store.userFollow)
 
     const getAllUser=async()=>{
         try {
             const response=await axios.get('/api/users')
-            setAllUsers(response.data.users)
+            dispatch(allUsersHandler(response.data.users))
         } catch (error) {
             console.log(error);
         }
@@ -22,6 +25,7 @@ export const RightSidebar=()=>{
     useEffect(()=>{
         getAllUser()
     },[])
+
     return(
         <Box w='20rem' h='20rem' border='1px'>
             {allUsers&&allUsers.map(dbUsers=>
@@ -31,7 +35,7 @@ export const RightSidebar=()=>{
             <Box size='sm'>{dbUsers.username}</Box>
             </Box>
             <Box>
-            {userFollow&&userFollow.following.some(item=>item._id===dbUsers._id)?<Button onClick={()=>unfollowHandler(dbUsers._id,setUserFollow)} size='xs' colorScheme='teal' variant='outline'>Following</Button>:<Button onClick={()=>followHandler(dbUsers._id,setUserFollow)} colorScheme='blue' size='xs'>Follow</Button>}
+            {userFollow&&userFollow.following.some(item=>item._id===dbUsers._id)?<Button onClick={()=>unfollowHandler(dbUsers._id,dispatch)} size='xs' colorScheme='teal' variant='outline'>Following</Button>:<Button onClick={()=>followHandler(dbUsers._id,dispatch)} colorScheme='blue' size='xs'>Follow</Button>}
             <UnfollowModal isOpen={isOpen} onClose={onClose} />
             </Box>
             </Flex>

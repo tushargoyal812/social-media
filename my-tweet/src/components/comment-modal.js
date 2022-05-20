@@ -14,10 +14,14 @@ import {
   import { useEffect, useRef } from 'react'
 import { usePost } from '../context/post-context'
 import { addCommentHandler } from '../util-functions/add-comment-handler'
+import { commentDetailHandler } from '../redux/redux-src/features/post/postSlice'
+import { useSelector,useDispatch } from 'react-redux'
 export const CommentModal=({onClose,isOpen})=>{
     const initialRef = useRef()
     const finalRef = useRef()
-    const {commentDetail,setCommentDetail,setPosts,userPostId}=usePost()
+    const dispatch=useDispatch()
+    const {commentDetail}=useSelector(store=>store.posts)
+    const {userPostId}=useSelector(store=>store.posts)
     return(
         <>
       <Modal
@@ -32,11 +36,11 @@ export const CommentModal=({onClose,isOpen})=>{
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <Input onChange={(e)=>setCommentDetail(e.target.value)} ref={initialRef} placeholder='Tweet your reply' />
+              <Input onChange={(e)=>dispatch(commentDetailHandler(e.target.value))} ref={initialRef} placeholder='Tweet your reply' />
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={()=>addCommentHandler(userPostId,commentDetail,setPosts)} colorScheme='blue' mr={3}>
+            <Button onClick={()=>addCommentHandler(userPostId,commentDetail,dispatch)} colorScheme='blue' mr={3}>
               reply
             </Button>
             <Button onClick={onClose}>Cancel</Button>

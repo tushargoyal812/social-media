@@ -1,6 +1,7 @@
 import axios from "axios";
+import { postHandler } from "../redux/redux-src/features/post/postSlice";
 
-export const upVoteHandler=async(upVotePostId,upVoteCommentId,setPosts)=>{
+export const upVoteHandler=async(upVotePostId,upVoteCommentId,dispatch)=>{
     const token=localStorage.getItem('user')
     console.log(upVotePostId,upVoteCommentId,token,"from frondtend");
     try {
@@ -9,7 +10,7 @@ export const upVoteHandler=async(upVotePostId,upVoteCommentId,setPosts)=>{
               authorization:token
             }
           })
-          setPosts(response.data.posts);
+          dispatch(postHandler(response.data.posts));
     } catch (error) {
         console.log(error);
     }

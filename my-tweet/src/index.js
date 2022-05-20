@@ -6,6 +6,8 @@ import { makeServer } from "./server";
 import {extendTheme,ChakraProvider} from '@chakra-ui/react'
 import {BrowserRouter} from 'react-router-dom'
 import { PostProvider } from "./context/post-context";
+import { Provider } from "react-redux";
+import {store} from '../src/redux/redux-src/app/store'
 // Call make Server
 makeServer();
 
@@ -25,7 +27,9 @@ ReactDOM.render(
     <PostProvider>
     <ChakraProvider theme={theme}>
       <BrowserRouter>
+      <Provider store={store}>
     <App />
+    </Provider>
     </BrowserRouter>
     </ChakraProvider>
     </PostProvider>

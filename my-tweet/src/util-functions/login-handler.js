@@ -1,11 +1,11 @@
 import axios from "axios"
-export const loginHandler= async (navigate,login,toast,setLoggedInUser)=>{
+export const loginHandler= async (navigate,login,toast)=>{
     try {
         const response=await axios.post('/api/auth/login',login)
         localStorage.setItem("user",response.data.encodedToken)
-        console.log(response,"from login modal");
         localStorage.setItem('userName',JSON.stringify(response.data.foundUser))
-        navigate('/')
+        const user=localStorage.getItem("user")
+        {user&&navigate('/')}
         toast({
             title: "Logged in Successfully",
             status: 'success',

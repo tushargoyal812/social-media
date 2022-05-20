@@ -26,7 +26,6 @@ export const SignUp=()=>{
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const signupHandler= async ()=>{
-    console.log(signUpData)
     try {
       const response=await axios.post('/api/auth/signup',signUpData)
       localStorage.setItem("token",response.data.encodedToken)

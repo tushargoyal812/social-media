@@ -1,5 +1,6 @@
 import axios from "axios";
-export const addCommentHandler=async(id,commentData,setPosts)=>{
+import { postHandler } from "../redux/redux-src/features/post/postSlice";
+export const addCommentHandler=async(id,commentData,dispatch)=>{
     const token=localStorage.getItem('user')
     try {
         const response=await axios.post(`/api/comments/add/${id}`,{
@@ -9,8 +10,7 @@ export const addCommentHandler=async(id,commentData,setPosts)=>{
               authorization:token
             }
           })
-          console.log(response);
-          setPosts(response.data.posts);
+          dispatch(postHandler(response.data.posts));
     } catch (error) {
         console.log(error);
     }

@@ -8,9 +8,11 @@ import { BiLike,BiMessageRounded } from "react-icons/bi";
 import { MdOutlineThumbUp,MdThumbUp } from "react-icons/md";
 import { likeHandler } from "../util-functions/likeHandler"
 import { dislikeHandler } from "../util-functions/dislike-handler"
+import { useSelector,useDispatch } from "react-redux"
 
 export const BookMarks=()=>{
-    const {userBookmarks,setPosts}=usePost()
+    const dispatch=useDispatch()
+    const {userBookmarks}=useSelector(store=>store.userBookmarks)
     return(
         <>
         <Navbar/>
@@ -28,7 +30,7 @@ export const BookMarks=()=>{
                     <Box my='1.5rem'>
                     <Flex justify='space-around'>
                     <Box>{post.likes.likeCount}</Box>
-                    {post.likes.likeCount===0?<Icon onClick={()=>likeHandler(post._id,setPosts)} h='2rem' w='2rem' as={MdOutlineThumbUp}/>:<Icon onClick={()=>dislikeHandler(post._id,setPosts)} h='2rem' w='2rem' as={MdThumbUp} />}
+                    {post.likes.likeCount===0?<Icon onClick={()=>likeHandler(post._id,dispatch)} h='2rem' w='2rem' as={MdOutlineThumbUp}/>:<Icon onClick={()=>dislikeHandler(post._id,setPosts)} h='2rem' w='2rem' as={MdThumbUp} />}
                     <Icon h='2rem' w='2rem' as={BiMessageRounded}/>
                     <AddBookmark userPost={post}/>
                     </Flex>

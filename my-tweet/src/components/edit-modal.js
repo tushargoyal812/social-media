@@ -6,12 +6,14 @@ import { Modal,
     ModalFooter,
     ModalBody,
     ModalCloseButton,Button,FormControl,FormLabel,Input } from "@chakra-ui/react"
-import { usePost } from "../context/post-context"
 import axios from "axios"
+import { useSelector,useDispatch } from "react-redux"
+import { postHandler,newPostHandler } from "../redux/redux-src/features/post/postSlice"
 export const EditModal=({ isOpen, onOpen, onClose,userEditPost })=> {
-    const {posts,setPosts,newPostData,setNewPostData}=usePost()
     const initialRef = useRef()
     const finalRef = useRef()
+    const dispatch=useDispatch()
+    const {newPostData}=useSelector(store=>store.posts)
 
     const saveEditHandler=async(id)=>{
         const token=localStorage.getItem("user")
@@ -23,7 +25,7 @@ export const EditModal=({ isOpen, onOpen, onClose,userEditPost })=> {
                   authorization: token,
                 },
               })
-              setPosts(response.data.posts);
+              dispatch(postHandler(response.data.posts))
         } catch (error) {
             console.log(error);
         }
@@ -42,7 +44,7 @@ export const EditModal=({ isOpen, onOpen, onClose,userEditPost })=> {
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl>
-                <Input onChange={(e)=>setNewPostData(e.target.value)} value={newPostData} ref={initialRef} />
+                <Input onChange={(e)=>dispatch(newPostHandler(e.target.value))} value={newPostData} ref={initialRef} />
               </FormControl>
             </ModalBody>
   

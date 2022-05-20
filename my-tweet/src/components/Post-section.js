@@ -27,18 +27,21 @@ import { EditComment } from "./edit-comment"
 import { deleteCommentHandler } from "../util-functions/delete-comment"
 import { upVoteHandler } from "../util-functions/upVote-handler"
 import { downVoteHandler } from "../util-functions/downVote-handler"
+import { useSelector,useDispatch } from "react-redux"
+import { postHandler } from "../redux/redux-src/features/post/postSlice"
+import { postIdHandler } from "../redux/redux-src/features/post/postSlice"
+import { commentIdHandler } from "../redux/redux-src/features/post/postSlice"
 
 export const PostSection=()=>{
-    const {posts,setPosts,commentDetail,setCommentDetail,setUserPostId,userPostId,userCommentId,setUserCommentId}=usePost()
-    const [commentInput,setCommentInput]=useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [openComment,setOpenComment]=useState(false)
     const [openEditComment,setOpenEditComment]=useState(false)
+    const dispatch=useDispatch()
+    const {posts}=useSelector(store=>store.posts)
     const getPostsFromDb= async ()=>{
-        console.log("data aya");
         try {
             const reponse=await axios.get('/api/posts')
-            setPosts(reponse.data.posts)
+            dispatch(postHandler(reponse.data.posts))
         } catch (error) {
             console.log(error);
         }
@@ -93,16 +96,16 @@ export const PostSection=()=>{
                     <Flex justify='space-around'>
                     <Flex align='center'>
                     <Box>{post.likes.likeCount}</Box>
-                    {post.likes.likeCount===0?<Icon onClick={()=>likeHandler(post._id,setPosts)} h='2rem' w='2rem' as={MdOutlineThumbUp}/>:<Icon onClick={()=>dislikeHandler(post._id,setPosts)} h='2rem' w='2rem' as={MdThumbUp} />}
+                    {post.likes.likeCount===0?<Icon onClick={()=>likeHandler(post._id,dispatch)} h='2rem' w='2rem' as={MdOutlineThumbUp}/>:<Icon onClick={()=>dislikeHandler(post._id,dispatch)} h='2rem' w='2rem' as={MdThumbUp} />}
                     </Flex>
-                    <Icon onClick={()=>{setUserPostId(post._id)
+                    <Icon onClick={()=>{dispatch(postIdHandler(post._id))
                     onOpen()
                     setOpenComment(true)}} h='2rem' w='2rem' as={BiMessageRounded}/>
                     {openComment&&<CommentModal onClose={onClose} isOpen={isOpen}  />}
                     <AddBookmark userPost={post}/>
                     </Flex>
                     </Box>
-                    <Box w='35rem' py='1rem' h='10rem' border='1px'>
+                    <Box>
                         {post.comments.map(data=><Box key={data._id}>
                             <Flex justify='space-between'>
                             <Box>
@@ -114,8 +117,8 @@ export const PostSection=()=>{
                         <Heading size='md'>{data.username}</Heading>
                         <Box>{data.commentData}</Box>
                         </Box>
-                        <Icon onClick={()=>upVoteHandler(post._id,data._id,setPosts)} mx='1rem' as={BiUpvote}/>
-                        <Icon onClick={()=>downVoteHandler(post._id,data._id,setPosts)} as={BiDownvote}/>
+                        <Icon onClick={()=>upVoteHandler(post._id,data._id,dispatch)} mx='1rem' as={BiUpvote}/>
+                        <Icon onClick={()=>downVoteHandler(post._id,data._id,dispatch)} as={BiDownvote}/>
                         {data.votes.upvotedBy.map(upvoteItem=><Box key={upvoteItem._id}>
                             <Heading size='sm'> up voted By {upvoteItem.username}</Heading>
                             </Box>)}
@@ -132,14 +135,14 @@ export const PostSection=()=>{
                         </MenuButton>
                         <MenuList>
                         <MenuItem onClick={()=>{onOpen()
-                        setUserCommentId(data._id)
+                        dispatch(commentIdHandler(data._id))
                         setOpenEditComment(true)
                         setOpenComment(false)
                         }}>Edit</MenuItem>
                         <MenuItem onClick={()=>{
-                            setUserPostId(post._id)
-                            setUserCommentId(data._id)
-                            deleteCommentHandler(post._id,data._id,setPosts)
+                            dispatch(postIdHandler(post._id))
+                            dispatch(commentIdHandler(data._id))
+                            deleteCommentHandler(post._id,data._id,dispatch)
                             }}>Delete</MenuItem>
                         </MenuList>
                         </>
