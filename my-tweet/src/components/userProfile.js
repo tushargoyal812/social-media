@@ -10,6 +10,7 @@ export const UserProfileComponent=()=>{
     const dispatch=useDispatch()
     const {loggedInUser}=useSelector(store=>store.posts)
     const {userFollow}=useSelector(store=>store.posts)
+    const {profilePic}=useSelector(store=>store.posts)
 
 
     const getUserData=()=>{
@@ -21,13 +22,15 @@ export const UserProfileComponent=()=>{
         getUserData()
     },[])
 
+    console.log(profilePic);
+
     return(
         <>
         <Box>
         <Box border='1px' w='38rem' h='12rem'></Box>
         <Box pos='relative'>
         <Box w='38rem' px='0.5rem' pos='absolute' top='-5rem'>
-        <Avatar m='0.5rem' size='2xl' name='Segun Adebayo' src='https://pbs.twimg.com/profile_images/1418454146693222406/ARD6Bp1J_400x400.jpg' />
+        <Avatar m='0.5rem' size='2xl' name='Segun Adebayo' src={profilePic} />
         <Box>
         {loggedInUser&&<Flex justify='space-between'>
             <Box mb='0.5rem'>

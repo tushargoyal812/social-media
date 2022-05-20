@@ -10,7 +10,8 @@ const initialState={
     editUserData:{},
     commentDetail:"",
     userPostId:"",
-    userCommentId:""
+    userCommentId:"",
+    profilePic:"https://pbs.twimg.com/profile_images/1418454146693222406/ARD6Bp1J_400x400.jpg"
 }
 
 
@@ -47,10 +48,13 @@ const postSlice=createSlice({
         },
         commentIdHandler:(state,action)=>{
             state.userCommentId=action.payload
+        },
+        addProfilePic:(state,action)=>{
+            state.profilePic=action.payload
         }
     }
 })
 
-export const {postHandler,newPostHandler,bookmarkHandler,allUsersHandler,userFollowHandler,loggedInUserHandler,editUserDataHandler,commentDetailHandler,postIdHandler,commentIdHandler}=postSlice.actions
+export const {postHandler,newPostHandler,bookmarkHandler,allUsersHandler,userFollowHandler,loggedInUserHandler,editUserDataHandler,commentDetailHandler,postIdHandler,commentIdHandler,addProfilePic}=postSlice.actions
 
 export default postSlice.reducer

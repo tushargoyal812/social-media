@@ -6,6 +6,7 @@ import { unfollowHandler } from "../util-functions/unfollow-handler"
 import { UnfollowModal } from "./unfollow-modal"
 import { allUsersHandler } from "../redux/redux-src/features/post/postSlice"
 import { useSelector,useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 
 export const RightSidebar=()=>{
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -31,8 +32,10 @@ export const RightSidebar=()=>{
             {allUsers&&allUsers.map(dbUsers=>
             <Flex key={dbUsers._id} m='1rem' justify='space-around' align='center'>
             <Box>
+             <Link to={dbUsers.username}>
             <Heading size='md'>{`${dbUsers.firstName} ${dbUsers.lastName}`}</Heading>
             <Box size='sm'>{dbUsers.username}</Box>
+            </Link>
             </Box>
             <Box>
             {userFollow&&userFollow.following.some(item=>item._id===dbUsers._id)?<Button onClick={()=>unfollowHandler(dbUsers._id,dispatch)} size='xs' colorScheme='teal' variant='outline'>Following</Button>:<Button onClick={()=>followHandler(dbUsers._id,dispatch)} colorScheme='blue' size='xs'>Follow</Button>}

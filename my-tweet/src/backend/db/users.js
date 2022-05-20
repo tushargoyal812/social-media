@@ -28,6 +28,7 @@ export const users = [
   },
   {
     _id: uuid(),
+    userImage:"",
     firstName: "Tushar",
     lastName: "Goyal",
     username: "tushargoyal29",

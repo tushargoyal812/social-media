@@ -26,6 +26,7 @@ import { useSelector,useDispatch } from "react-redux"
 import { postHandler } from "../redux/redux-src/features/post/postSlice"
 import { postIdHandler } from "../redux/redux-src/features/post/postSlice"
 import { commentIdHandler } from "../redux/redux-src/features/post/postSlice"
+import { PostCard } from "./postCard";
 
 export const PostSection=()=>{
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -45,25 +46,25 @@ export const PostSection=()=>{
         getPostsFromDb()
     },[])
 
-    const sortByDateAndTime=()=>{
-    const sorted=[...posts].sort((a,b)=>b.createdAt.slice(17,19)-a.createdAt.slice(17,19))
-    setPosts(sorted);
-    }
+    // const sortByDateAndTime=()=>{
+    // const sorted=[...posts].sort((a,b)=>a.createdAt.slice(17,19)-b.createdAt.slice(17,19))
+    // dispatch(postHandler(sorted));
+    // }
 
-    const sortByTrending=(action)=>{
-        if(action==='trending')
-        {
-        const sorted=[...posts].sort((a,b)=>b.likes.likeCount-a.likes.likeCount)
-        setPosts(sorted)
-        }else{
-            setPosts(posts)
-        }
-    }
+    // const sortByTrending=(action)=>{
+    //     if(action==='trending')
+    //     {
+    //     const sorted=[...posts].sort((a,b)=>b.likes.likeCount-a.likes.likeCount)
+    //     dispatch(postHandler(sorted));
+    //     }else{
+    //         dispatch(postHandler(posts));
+    //     }
+    // }
 
     return(
         <>
         <Flex direction='column'>
-         <Box w='40rem' h='9rem' border='2px' borderColor='gray.200'>
+         <Box w='35rem' h='9rem' border='2px' borderColor='gray.200'>
             <Wrap>
                 <Flex align='center'>
                 <WrapItem m='1rem'>
@@ -77,77 +78,79 @@ export const PostSection=()=>{
                 <CreatePost isOpen={isOpen} onClose={onClose} />
             </Flex>
             </Box>
-            <Box w='40rem' border='2px' borderColor='gray.200'>
+            <Box w='35rem' border='2px' borderColor='gray.200'>
             <Button onClick={()=>sortByTrending("trending")} colorScheme='teal' variant='outline'>Trending</Button>
             <Button onClick={()=>sortByDateAndTime()} colorScheme='teal' variant='outline'>Sort by Date & Time</Button>
                 {posts.map(post=>
-                <Box mx='2.5rem' my='3rem' key={post._id}>
-                    <Flex justify='space-between'>
-                    <Heading size='md'>{post.username}</Heading>
-                    <PostMenu userPost={post} />
-                    </Flex>
-                    <Box size='sm'>{post.content}</Box>
-                    <Box my='1.5rem'>
-                    <Flex justify='space-around'>
-                    <Flex align='center'>
-                    <Box>{post.likes.likeCount}</Box>
-                    {post.likes.likeCount===0?<Icon onClick={()=>likeHandler(post._id,dispatch)} h='2rem' w='2rem' as={MdOutlineThumbUp}/>:<Icon onClick={()=>dislikeHandler(post._id,dispatch)} h='2rem' w='2rem' as={MdThumbUp} />}
-                    </Flex>
-                    <Icon onClick={()=>{dispatch(postIdHandler(post._id))
-                    onOpen()
-                    setOpenComment(true)}} h='2rem' w='2rem' as={BiMessageRounded}/>
-                    {openComment&&<CommentModal onClose={onClose} isOpen={isOpen}  />}
-                    <AddBookmark userPost={post}/>
-                    </Flex>
-                    </Box>
-                    <Box>
-                        {post.comments.map(data=><Box key={data._id}>
-                            <Flex justify='space-between'>
-                            <Box>
-                        <Flex>        
-                        <Box px='0.5rem'>
-                        <Avatar name='Tushar Goyal' src='https://pbs.twimg.com/profile_images/1418454146693222406/ARD6Bp1J_400x400.jpg' />
-                        </Box>
-                        <Box>
-                        <Heading size='md'>{data.username}</Heading>
-                        <Box>{data.commentData}</Box>
-                        </Box>
-                        <Icon onClick={()=>upVoteHandler(post._id,data._id,dispatch)} mx='1rem' as={BiUpvote}/>
-                        <Icon onClick={()=>downVoteHandler(post._id,data._id,dispatch)} as={BiDownvote}/>
-                        {data.votes.upvotedBy.map(upvoteItem=><Box key={upvoteItem._id}>
-                            <Heading size='sm'> up voted By {upvoteItem.username}</Heading>
-                            </Box>)}
-                        {data.votes.downvotedBy.map(upvoteItem=><Box key={upvoteItem._id}>
-                            <Heading size='sm'> down voted By {upvoteItem.username}</Heading>
-                            </Box>)}
-                            </Flex>
-                            </Box>
-                            <Box>
-                        <Menu>
-                        <>
-                        <MenuButton>
-                        <Icon w='1.5rem' h='1.5rem' as={Button} as={GoKebabVertical} />
-                        </MenuButton>
-                        <MenuList>
-                        <MenuItem onClick={()=>{onOpen()
-                        dispatch(commentIdHandler(data._id))
-                        setOpenEditComment(true)
-                        setOpenComment(false)
-                        }}>Edit</MenuItem>
-                        <MenuItem onClick={()=>{
-                            dispatch(postIdHandler(post._id))
-                            dispatch(commentIdHandler(data._id))
-                            deleteCommentHandler(post._id,data._id,dispatch)
-                            }}>Delete</MenuItem>
-                        </MenuList>
-                        </>
-                        {openEditComment&&<EditComment isOpen={isOpen} onClose={onClose} />}
-                        </Menu>
-                        </Box>
-                        </Flex>
-                        </Box>)}
-                    </Box>
-                </Box>)}
+                <PostCard post={post}/>
+                // <Box mx='2.5rem' my='3rem' key={post._id}>
+                //     <Flex justify='space-between'>
+                //     <Heading size='md'>{post.username}</Heading>
+                //     <PostMenu userPost={post} />
+                //     </Flex>
+                //     <Box size='sm'>{post.content}</Box>
+                //     <Box my='1.5rem'>
+                //     <Flex justify='space-around'>
+                //     <Flex align='center'>
+                //     <Box>{post.likes.likeCount}</Box>
+                //     {post.likes.likeCount===0?<Icon onClick={()=>likeHandler(post._id,dispatch)} h='2rem' w='2rem' as={MdOutlineThumbUp}/>:<Icon onClick={()=>dislikeHandler(post._id,dispatch)} h='2rem' w='2rem' as={MdThumbUp} />}
+                //     </Flex>
+                //     <Icon onClick={()=>{dispatch(postIdHandler(post._id))
+                //     onOpen()
+                //     setOpenComment(true)}} h='2rem' w='2rem' as={BiMessageRounded}/>
+                //     {openComment&&<CommentModal onClose={onClose} isOpen={isOpen}  />}
+                //     <AddBookmark userPost={post}/>
+                //     </Flex>
+                //     </Box>
+                //     <Box>
+                //         {post.comments.map(data=><Box key={data._id}>
+                //             <Flex justify='space-between'>
+                //             <Box>
+                //         <Flex>        
+                //         <Box px='0.5rem'>
+                //         <Avatar name='Tushar Goyal' src='https://pbs.twimg.com/profile_images/1418454146693222406/ARD6Bp1J_400x400.jpg' />
+                //         </Box>
+                //         <Box>
+                //         <Heading size='md'>{data.username}</Heading>
+                //         <Box>{data.commentData}</Box>
+                //         </Box>
+                //         <Icon onClick={()=>upVoteHandler(post._id,data._id,dispatch)} mx='1rem' as={BiUpvote}/>
+                //         <Icon onClick={()=>downVoteHandler(post._id,data._id,dispatch)} as={BiDownvote}/>
+                //         {data.votes.upvotedBy.map(upvoteItem=><Box key={upvoteItem._id}>
+                //             <Heading size='sm'> up voted By {upvoteItem.username}</Heading>
+                //             </Box>)}
+                //         {data.votes.downvotedBy.map(upvoteItem=><Box key={upvoteItem._id}>
+                //             <Heading size='sm'> down voted By {upvoteItem.username}</Heading>
+                //             </Box>)}
+                //             </Flex>
+                //             </Box>
+                //             <Box>
+                //         <Menu>
+                //         <>
+                //         <MenuButton>
+                //         <Icon w='1.5rem' h='1.5rem' as={Button} as={GoKebabVertical} />
+                //         </MenuButton>
+                //         <MenuList>
+                //         <MenuItem onClick={()=>{onOpen()
+                //         dispatch(commentIdHandler(data._id))
+                //         setOpenEditComment(true)
+                //         setOpenComment(false)
+                //         }}>Edit</MenuItem>
+                //         <MenuItem onClick={()=>{
+                //             dispatch(postIdHandler(post._id))
+                //             dispatch(commentIdHandler(data._id))
+                //             deleteCommentHandler(post._id,data._id,dispatch)
+                //             }}>Delete</MenuItem>
+                //         </MenuList>
+                //         </>
+                //         {openEditComment&&<EditComment isOpen={isOpen} onClose={onClose} />}
+                //         </Menu>
+                //         </Box>
+                //         </Flex>
+                //         </Box>)}
+                //     </Box>
+                // </Box>
+                )}
             </Box>
             </Flex>
         </>

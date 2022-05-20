@@ -4,6 +4,8 @@ import {Routes,Route} from 'react-router-dom'
 import { BookMarks } from "./components/bookmarks";
 import { UserProfile } from "./pages/user-profile";
 import { Following } from "./pages/following";
+import { Explore } from "./pages/explore";
+import { OtherUserProfile } from "./pages/otherUserProfile";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path='bookmarks' element={<BookMarks/>} />
         <Route path='profile' element={<UserProfile/>} />
         <Route path='following' element={<Following/>} />
+        <Route path='explore' element={<Explore/>} />
+        <Route path=':username' element={<OtherUserProfile/>} />
       </Routes>
     </div>
   );

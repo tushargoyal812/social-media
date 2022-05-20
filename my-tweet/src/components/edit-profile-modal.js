@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import {
     Modal,
     ModalOverlay,
@@ -16,6 +16,7 @@ import axios from "axios"
 import { editUserDataHandler } from "../redux/redux-src/features/post/postSlice"
 import { useSelector,useDispatch } from "react-redux"
 import { loggedInUserHandler } from "../redux/redux-src/features/post/postSlice"
+import { addProfilePic } from "../redux/redux-src/features/post/postSlice"
 export const EditProfileModal=({isOpen,onClose})=>{
     const initialRef = useRef()
     const finalRef = useRef()
@@ -56,6 +57,14 @@ export const EditProfileModal=({isOpen,onClose})=>{
           <ModalHeader>Edit Profile</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
+          <FormControl>
+              <FormLabel>Profile image</FormLabel>
+              <Input type='file' name="profile-image" onChange={(e)=>{
+                console.log(e.target.files[0]);
+                dispatch(addProfilePic(URL.createObjectURL(e.target.files[0])))
+              }} placeholder='Profile image' />
+            </FormControl>
+
             <FormControl>
               <FormLabel>First name</FormLabel>
               <Input name="firstName" defaultValue={editUserData.firstName} onChange={(e)=>onChangeHandler(e)} placeholder='First name' />
