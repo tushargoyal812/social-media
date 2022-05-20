@@ -30,7 +30,7 @@ export const Explore=()=>{
         <Flex>
         <Sidebar/>
         <Box w='35rem' border='2px' borderColor='gray.200'>
-            {posts.map(post=><PostCard post={post} />)}
+            {posts.map(post=><PostCard key={post._id} post={post} />)}
         </Box>
         <RightSidebar/>
         </Flex>

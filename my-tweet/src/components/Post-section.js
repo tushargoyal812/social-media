@@ -82,7 +82,7 @@ export const PostSection=()=>{
             <Button onClick={()=>sortByTrending("trending")} colorScheme='teal' variant='outline'>Trending</Button>
             <Button onClick={()=>sortByDateAndTime()} colorScheme='teal' variant='outline'>Sort by Date & Time</Button>
                 {posts.map(post=>
-                <PostCard post={post}/>
+                <PostCard key={post._id} post={post}/>
                 )}
             </Box>
             </Flex>

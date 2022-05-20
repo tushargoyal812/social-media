@@ -36,7 +36,7 @@ export const BookMarks=()=>{
                 //     </Flex>
                 //     </Box>
                 // </Box>
-                <PostCard post={post}/>
+                <PostCard key={post._id} post={post}/>
                 )}
             </Box>
         </Flex>
