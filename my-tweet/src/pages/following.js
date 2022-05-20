@@ -2,14 +2,13 @@ import { Box, Flex, Heading, Wrap,Button } from "@chakra-ui/react"
 import { Navbar } from "../components/navbar"
 import { RightSidebar } from "../components/right-sidebar"
 import { Sidebar } from "../components/Sidebar"
-import { usePost } from "../context/post-context"
 import { unfollowHandler } from "../util-functions/unfollow-handler"
 import { followHandler } from "../util-functions/follow-handler"
 import { useSelector,useDispatch } from "react-redux"
 
 export const Following=()=>{
     const dispatch=useDispatch()
-    const {userFollow}=useSelector(store=>store.userFollow)
+    const {userFollow}=useSelector(store=>store.posts)
     return(
         <>
         <Navbar/>

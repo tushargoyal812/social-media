@@ -12,7 +12,6 @@ import {
     Input
   } from '@chakra-ui/react'
   import { useEffect, useRef } from 'react'
-import { usePost } from '../context/post-context'
 import { addCommentHandler } from '../util-functions/add-comment-handler'
 import { commentDetailHandler } from '../redux/redux-src/features/post/postSlice'
 import { useSelector,useDispatch } from 'react-redux'

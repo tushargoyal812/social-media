@@ -9,9 +9,7 @@ export const unfollowHandler=async(id,dispatch)=>{
                 authorization: token,
               },
            })
-        //    setUserFollow(response.data.user);
         dispatch(userFollowHandler(response.data.user))
-           console.log(response.data);
     } catch (error) {
         console.log(error);
     }

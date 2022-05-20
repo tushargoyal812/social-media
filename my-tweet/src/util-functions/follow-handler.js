@@ -10,7 +10,6 @@ export const followHandler=async(id,dispatch)=>{
               },
            })
            dispatch(userFollowHandler(response.data.user))
-           console.log(response.data.user);
     } catch (error) {
         console.log(error);
     }

@@ -12,7 +12,6 @@ import {
   } from '@chakra-ui/react'
   import { deletePostHandler } from '../util-functions/delete-post-handler';
   import { GoKebabVertical } from "react-icons/go";
-import { usePost } from '../context/post-context';
 import { EditModal } from './edit-modal';
 import { useSelector,useDispatch } from 'react-redux';
 export const PostMenu=({userPost})=>{

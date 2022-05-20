@@ -10,8 +10,8 @@ import { useSelector,useDispatch } from "react-redux"
 export const RightSidebar=()=>{
     const { isOpen, onOpen, onClose } = useDisclosure()
     const dispatch=useDispatch()
-    const {allUsers}=useSelector(store=>store.allUsers)
-    const {userFollow}=useSelector(store=>store.userFollow)
+    const {allUsers}=useSelector(store=>store.posts)
+    const {userFollow}=useSelector(store=>store.posts)
 
     const getAllUser=async()=>{
         try {

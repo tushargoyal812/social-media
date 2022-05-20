@@ -6,13 +6,9 @@ import { Button,Modal,
     ModalFooter,
     ModalBody,
     ModalCloseButton,FormControl,FormLabel,Input,Flex } from "@chakra-ui/react"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { Toast } from "./toast"
-import { usePost } from "../context/post-context"
 import { loginHandler } from "../util-functions/login-handler"
 import { useToast } from "@chakra-ui/react"
-import { useDispatch } from "react-redux"
 export function InitialFocus({isOpen,onClose}) {
   const [login,setLogin]=useState({username:"",password:""})
   const navigate=useNavigate()

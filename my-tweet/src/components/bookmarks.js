@@ -3,7 +3,6 @@ import { Navbar } from "./navbar"
 import { Sidebar } from "./Sidebar"
 import { PostMenu } from "./post-menu"
 import { AddBookmark } from "./add-bookmark"
-import { usePost } from "../context/post-context"
 import { BiLike,BiMessageRounded } from "react-icons/bi";
 import { MdOutlineThumbUp,MdThumbUp } from "react-icons/md";
 import { likeHandler } from "../util-functions/likeHandler"
@@ -12,7 +11,7 @@ import { useSelector,useDispatch } from "react-redux"
 
 export const BookMarks=()=>{
     const dispatch=useDispatch()
-    const {userBookmarks}=useSelector(store=>store.userBookmarks)
+    const {userBookmarks}=useSelector(store=>store.posts)
     return(
         <>
         <Navbar/>

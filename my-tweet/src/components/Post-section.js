@@ -9,19 +9,14 @@ import { Box, Flex, Heading, Wrap, WrapItem,Avatar,Button,useDisclosure,Icon,Inp
      } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { usePost } from "../context/post-context"
 import { CreatePost } from "./create-post"
 import { BiLike,BiMessageRounded,BiUpvote,BiDownvote } from "react-icons/bi";
 import { MdOutlineThumbUp,MdThumbUp } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
 import { PostMenu } from "./post-menu"
-import { EditModal } from "./edit-modal"
 import { AddBookmark } from "./add-bookmark"
 import { likeHandler } from "../util-functions/likeHandler"
 import { dislikeHandler } from "../util-functions/dislike-handler"
 import { CommentModal } from "./comment-modal"
-import { addCommentHandler } from "../util-functions/add-comment-handler"
-import { CommentMenu } from "./comment-menu"
 import { GoKebabVertical } from "react-icons/go";
 import { EditComment } from "./edit-comment"
 import { deleteCommentHandler } from "../util-functions/delete-comment"

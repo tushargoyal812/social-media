@@ -12,16 +12,14 @@ import {
   } from '@chakra-ui/react'
 import axios from 'axios';
   import { MdBookmark } from "react-icons/md";
-import { usePost } from '../context/post-context';
 import { RemoveBookmarkPostHandler } from '../util-functions/remove-bookmark';
 import { useToast } from '@chakra-ui/react';
 import { bookmarkHandler } from '../redux/redux-src/features/post/postSlice';
 import { useSelector,useDispatch } from 'react-redux';
 export const AddBookmark=({userPost})=>{
-    // const {userBookmarks,setUserBookmarks}=usePost()
     const toast=useToast()
     const dispatch=useDispatch()
-    const {userBookmarks}=useSelector(store=>store.userBookmarks)
+    const {userBookmarks}=useSelector(store=>store.posts)
     const bookmarkPostHandler=async(id)=>{
         const token=localStorage.getItem('user')
             try {

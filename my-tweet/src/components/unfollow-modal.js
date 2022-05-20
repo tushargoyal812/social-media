@@ -9,8 +9,6 @@ import {
     Button,
     Heading
   } from '@chakra-ui/react'
-import { usePost } from '../context/post-context'
-import { unfollowHandler } from '../util-functions/unfollow-handler'
 export const UnfollowModal=({isOpen,onClose})=>{
     return(
         <>
