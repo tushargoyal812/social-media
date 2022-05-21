@@ -5,7 +5,7 @@ export const loginHandler= async (navigate,login,toast)=>{
         localStorage.setItem("user",response.data.encodedToken)
         localStorage.setItem('userName',JSON.stringify(response.data.foundUser))
         const user=localStorage.getItem("user")
-        {user&&navigate('/')}
+        {user&&navigate('/home')}
         toast({
             title: "Logged in Successfully",
             status: 'success',

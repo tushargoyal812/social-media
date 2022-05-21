@@ -46,20 +46,20 @@ export const PostSection=()=>{
         getPostsFromDb()
     },[])
 
-    // const sortByDateAndTime=()=>{
-    // const sorted=[...posts].sort((a,b)=>a.createdAt.slice(17,19)-b.createdAt.slice(17,19))
-    // dispatch(postHandler(sorted));
-    // }
+    const sortByDateAndTime=()=>{
+    const sorted=[...posts].sort((a,b)=>b.createdAt.slice(17,19)-a.createdAt.slice(17,19))
+    dispatch(postHandler(sorted));
+    }
 
-    // const sortByTrending=(action)=>{
-    //     if(action==='trending')
-    //     {
-    //     const sorted=[...posts].sort((a,b)=>b.likes.likeCount-a.likes.likeCount)
-    //     dispatch(postHandler(sorted));
-    //     }else{
-    //         dispatch(postHandler(posts));
-    //     }
-    // }
+    const sortByTrending=(action)=>{
+        if(action==='trending')
+        {
+        const sorted=[...posts].sort((a,b)=>b.likes.likeCount-a.likes.likeCount)
+        dispatch(postHandler(sorted));
+        }else{
+            dispatch(postHandler(posts));
+        }
+    }
 
     return(
         <>

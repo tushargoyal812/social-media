@@ -19,7 +19,7 @@ export const Sidebar=()=>{
 <List fontSize='1.5rem' pr='5rem' spacing={5}>
     <Flex direction='column'>
   <Box mt='2rem'>    
-  <NavLink to='/'>
+  <NavLink to='/home'>
       <Icon mx='1rem' as={MdHome} />
     Home
   </NavLink>
