@@ -2,7 +2,7 @@
 
 ## [Live link](https://social-media-rose.vercel.app/)
 
-Talkmedia is an fully functional and Responsive social media app which provides the different pages like Home Page,Explore page, Bookmark page , profile page, Login/Signup page.
+TweetTalk is an fully functional and Responsive social media app which provides the different pages like Home Page,Explore page, Bookmark page , profile page, Login/Signup page.
 ![social-final](https://user-images.githubusercontent.com/69681896/169649539-c3c475be-f601-4e5a-9781-6f76500c5d3c.png)
 
 ## Whats's included?
