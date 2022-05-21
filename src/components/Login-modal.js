@@ -5,16 +5,19 @@ import { Button,Modal,
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton,FormControl,FormLabel,Input,Flex } from "@chakra-ui/react"
+    ModalCloseButton,FormControl,FormLabel,Input,Flex, Icon, InputRightElement } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 import { loginHandler } from "../util-functions/login-handler"
 import { useToast } from "@chakra-ui/react"
+import {AiFillEye,AiFillEyeInvisible} from "react-icons/ai";
+import { ViewIcon,ViewOffIcon } from '@chakra-ui/icons'
 export function InitialFocus({isOpen,onClose}) {
   const [login,setLogin]=useState({username:"",password:""})
   const navigate=useNavigate()
   const toast=useToast()
     const initialRef =useRef()
     const finalRef =useRef()
+    const [showEye,setShowEye]=useState(false)
 
   
     return (
@@ -24,6 +27,7 @@ export function InitialFocus({isOpen,onClose}) {
           finalFocusRef={finalRef}
           isOpen={isOpen}
           onClose={onClose}
+
         >
           <ModalOverlay />
           <ModalContent>
@@ -32,12 +36,13 @@ export function InitialFocus({isOpen,onClose}) {
             <ModalBody pb={6}>
               <FormControl>
                 <FormLabel>User name</FormLabel>
-                <Input onChange={(e)=>setLogin({...login,username:e.target.value})} type="text" ref={initialRef} placeholder='User name' />
+                <Input onChange={(e)=>setLogin({...login,username:e.target.value})} type='text' ref={initialRef} placeholder='User name' />
               </FormControl>
   
-              <FormControl mt={4}>
+              <FormControl mt={4} pos='relative'>
                 <FormLabel>Password</FormLabel>
-                <Input onChange={(e)=>setLogin({...login,password:e.target.value})} type='password' placeholder='password' />
+                <Input onChange={(e)=>setLogin({...login,password:e.target.value})} type={showEye?"text":"password"} placeholder='password' />
+                {showEye?<InputRightElement cursor='pointer' w='1.5rem' h='1.5rem' pos='relative' top='-2rem' left='23rem' onClick={()=>setShowEye(false)} children={<ViewIcon color='black.500' />} />:<InputRightElement cursor='pointer' w='1.5rem' h='1.5rem' pos='relative' top='-2rem' left='23rem' onClick={()=>setShowEye(true)} children={<ViewOffIcon color='black.500' />} />}
               </FormControl>
             </ModalBody>
   

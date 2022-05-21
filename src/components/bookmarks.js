@@ -13,6 +13,8 @@ import { PostCard } from "./postCard"
 export const BookMarks=()=>{
     const dispatch=useDispatch()
     const {userBookmarks}=useSelector(store=>store.posts)
+    const {posts}=useSelector(store=>store.posts)
+    console.log(posts);
     return(
         <>
         <Navbar/>

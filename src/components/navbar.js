@@ -9,8 +9,7 @@ export const Navbar=()=>{
     return(
         <Box border='2px' p='1rem'>
             <Flex justify='space-around' align='center'>
-            {/* <Heading size='md'>Logo</Heading>
-            <Heading size='md'>Home</Heading> */}
+            <Heading size='lg'>TweetTalk</Heading>
             {localStorage.getItem('user')?<Link to='/'><Button onClick={()=>logoutHandler(navigate,toast)} colorScheme='teal' variant='outline'>Logout</Button></Link>:<Link to='/'><Button colorScheme='teal' variant='outline'>Login</Button></Link>}
             </Flex>
         </Box>

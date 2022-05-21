@@ -26,6 +26,7 @@ import { useSelector,useDispatch } from "react-redux"
 import { postHandler } from "../redux/redux-src/features/post/postSlice"
 import { postIdHandler } from "../redux/redux-src/features/post/postSlice"
 import { commentIdHandler } from "../redux/redux-src/features/post/postSlice"
+import { setPostEditData } from "../redux/redux-src/features/post/postSlice";
 export const PostCard=({post})=>{
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [openComment,setOpenComment]=useState(false)

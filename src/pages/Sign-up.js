@@ -64,7 +64,7 @@ const testLogin= async (navigate,toast)=>{
       <Box boxSize='60rem'>
         <Image h='48rem' w='55rem' src='https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/logos/htc-summary-card.jpg.twimg.768.jpg' alt='Dan Abramov' />
       </Box>
-      <Box boxSize='25rem'>
+      <Box boxSize='25rem' mt='2rem'>
       <FormControl isRequired>
       <FormLabel htmlFor='first-name'>First name</FormLabel>
       <Input onChange={(e)=>setSignUpData({...signUpData,firstName:e.target.value})} mb='1.5rem' id='first-name' placeholder='First name' />
