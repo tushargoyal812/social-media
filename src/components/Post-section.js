@@ -47,8 +47,8 @@ export const PostSection=()=>{
     },[])
 
     const sortByDateAndTime=()=>{
-    const sorted=[...posts].sort((a,b)=>b.createdAt.slice(17,19)-a.createdAt.slice(17,19))
-    dispatch(postHandler(sorted));
+    const reversed=[...posts].reverse()
+    dispatch(postHandler(reversed));
     }
 
     const sortByTrending=(action)=>{

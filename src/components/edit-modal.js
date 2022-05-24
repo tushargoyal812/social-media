@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { Modal,
     ModalOverlay,
     ModalContent,
@@ -14,6 +14,7 @@ export const EditModal=({ isOpen, onOpen, onClose,userEditPost })=> {
     const finalRef = useRef()
     const dispatch=useDispatch()
     const {newPostData}=useSelector(store=>store.posts)
+    const {postEditData}=useSelector(store=>store.posts)
 
     const saveEditHandler=async(id)=>{
         const token=localStorage.getItem("user")
@@ -30,6 +31,10 @@ export const EditModal=({ isOpen, onOpen, onClose,userEditPost })=> {
             console.log(error);
         }
     }
+
+    useEffect(()=>{
+      dispatch(newPostHandler(postEditData))
+    },[postEditData])
     return (
       <>
         <Modal

@@ -26,7 +26,6 @@ import { useSelector,useDispatch } from "react-redux"
 import { postHandler } from "../redux/redux-src/features/post/postSlice"
 import { postIdHandler } from "../redux/redux-src/features/post/postSlice"
 import { commentIdHandler } from "../redux/redux-src/features/post/postSlice"
-import { setPostEditData } from "../redux/redux-src/features/post/postSlice";
 export const PostCard=({post})=>{
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [openComment,setOpenComment]=useState(false)
@@ -45,20 +44,6 @@ export const PostCard=({post})=>{
         getPostsFromDb()
     },[])
 
-    const sortByDateAndTime=()=>{
-    const sorted=[...posts].sort((a,b)=>a.createdAt.slice(17,19)-b.createdAt.slice(17,19))
-    dispatch(postHandler(sorted));
-    }
-
-    const sortByTrending=(action)=>{
-        if(action==='trending')
-        {
-        const sorted=[...posts].sort((a,b)=>b.likes.likeCount-a.likes.likeCount)
-        dispatch(postHandler(sorted));
-        }else{
-            dispatch(postHandler(posts));
-        }
-    }
     return(
         <Box mx='2.5rem' my='3rem' key={post._id}>
                     <Flex justify='space-between'>
